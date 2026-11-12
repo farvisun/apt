@@ -41,6 +41,8 @@ command -v gpg >/dev/null 2>&1 || { say "Installing gpg"; apt-get update -qq && 
 say "Adding the farvisun signing key ($FINGERPRINT)"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
+export GNUPGHOME="$tmp/gnupg"   # keep root's own GnuPG folder untouched
+mkdir -m 700 "$GNUPGHOME"
 cat > "$tmp/key.asc" <<'KEY'
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
