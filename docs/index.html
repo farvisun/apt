@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farvisun APT Repository</title>
+<meta name="description" content="A signed APT repository for Lumen and Desktop Studio on Ubuntu. Add it once and both apps update with your normal system updates.">
+<meta name="theme-color" content="#0b0e14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111621'/%3E%3Cpath d='M9 12l7-4 7 4v8l-7 4-7-4z' fill='none' stroke='%2378b4ff' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M9 12l7 4 7-4M16 16v8' fill='none' stroke='%2378b4ff' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f8fa; --surface:#ffffff; --line:#e3e6ec; --text:#141821; --muted:#5a6475; --faint:#8a93a3;
+  --accent:#2f6fd0; --accent-soft:rgba(47,111,208,.09); --code:#0f131b; --code-text:#d6deeb; --ok:#1f8f5a;
+  --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Cantarell,"Noto Sans",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b0e14; --surface:#121722; --line:#232a37; --text:#e8edf5; --muted:#9aa5b8; --faint:#6d778a;
+  --accent:#78b4ff; --accent-soft:rgba(120,180,255,.1); --code:#070a0f; --ok:#4cc38a; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{width:min(920px,100% - 32px);margin-inline:auto}
+header{padding:64px 0 24px}
+.badge{display:inline-flex;align-items:center;gap:8px;font:500 13px/1 var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:6px 12px;background:var(--surface)}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.08;letter-spacing:-.025em;margin:20px 0 12px}
+.lead{color:var(--muted);font-size:18px;max-width:40em;margin:0}
+h2{font-size:22px;letter-spacing:-.01em;margin:48px 0 14px}
+.term{border-radius:14px;background:var(--code);border:1px solid var(--line);overflow:hidden}
+.term-head{display:flex;justify-content:space-between;align-items:center;padding:8px 10px 8px 16px;border-bottom:1px solid rgba(255,255,255,.08);font:500 12px/1 var(--mono);color:#7d8799;letter-spacing:.06em}
+.term pre{margin:0;padding:16px;font:14px/1.65 var(--mono);color:var(--code-text);white-space:pre-wrap;overflow-wrap:anywhere}
+.term .c{color:#6b7689}
+.copy{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#e8edf5;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.12)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.card code,.facts code,p code{font:13.5px var(--mono);background:var(--accent-soft);padding:2px 6px;border-radius:6px;color:var(--text)}
+.card .links{display:flex;gap:16px;margin-top:6px;font-size:15px}
+.facts{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.facts li{display:grid;grid-template-columns:20px 1fr;gap:10px;color:var(--muted)}
+.facts svg{width:18px;height:18px;margin-top:3px;color:var(--ok)}
+.facts b{color:var(--text)}
+.fpr{font:13px/1.5 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+footer{margin:64px 0 0;padding:28px 0 48px;border-top:1px solid var(--line);color:var(--faint);font-size:14px}
+@media (max-width:640px){.grid{grid-template-columns:minmax(0,1fr)}header{padding-top:40px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <span class="badge"><i></i>Ubuntu · Debian · signed</span>
+  <h1>Farvisun APT Repository</h1>
+  <p class="lead">Install Lumen and Desktop Studio with <code>apt</code>. Add the repository once, and both apps update with your normal system updates.</p>
+</header>
+
+<h2>Add the repository</h2>
+<div class="term">
+  <div class="term-head">TERMINAL<button class="copy" type="button" data-copy="curl -fsSL https://farvisun.github.io/apt/setup.sh | sudo bash">Copy</button></div>
+  <pre>curl -fsSL https://farvisun.github.io/apt/setup.sh | sudo bash</pre>
+</div>
+<p>Then install what you want:</p>
+<div class="term">
+  <div class="term-head">TERMINAL<button class="copy" type="button" data-copy="sudo apt install lumen-launcher desktop-studio">Copy</button></div>
+  <pre>sudo apt install lumen-launcher desktop-studio</pre>
+</div>
+
+<h2>Packages</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Lumen</h3>
+    <p>A fast, native command launcher for GNOME. Press Super + Space to open apps and files, do quick maths and run commands.</p>
+    <p><code>lumen-launcher</code> · amd64 · GNOME 50</p>
+    <div class="links"><a href="https://farvisun.github.io/gnome-launcher/">Website</a><a href="https://github.com/farvisun/gnome-launcher">Source</a></div>
+  </div>
+  <div class="card">
+    <h3>Desktop Studio</h3>
+    <p>Every GNOME setting in one careful place, with profiles, backups and undo for every change.</p>
+    <p><code>desktop-studio</code> · all architectures</p>
+    <div class="links"><a href="https://farvisun.github.io/nome-tweak/">Website</a><a href="https://github.com/farvisun/nome-tweak">Source</a></div>
+  </div>
+</div>
+
+<h2>How it stays safe</h2>
+<ul class="facts">
+  <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg><span><b>Signed.</b> Every package list is signed, and apt refuses anything that doesn't match. The key is used only for this repository.</span></li>
+  <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg><span><b>Built from public releases.</b> Packages come from each project's GitHub releases and are checked against their published checksums.</span></li>
+  <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg><span><b>Scoped trust.</b> The key is stored in <code>/etc/apt/keyrings</code> and trusted only for this repository, not for your whole system.</span></li>
+</ul>
+<p class="fpr">Signing key fingerprint: F669 2EE0 1775 D624 50E2 985D 88C8 EE6A 70F5 DF57 · <a href="farvisun-archive-keyring.asc">public key</a></p>
+
+<h2>Remove</h2>
+<div class="term">
+  <div class="term-head">TERMINAL<button class="copy" type="button" data-copy="curl -fsSL https://farvisun.github.io/apt/setup.sh | sudo bash -s -- --remove">Copy</button></div>
+  <pre>curl -fsSL https://farvisun.github.io/apt/setup.sh | sudo bash -s -- --remove</pre>
+</div>
+<p>This removes the repository and its key. Apps you installed stay installed; remove them with <code>sudo apt remove lumen-launcher desktop-studio</code>.</p>
+
+<footer>Farvisun APT Repository · <a href="https://github.com/farvisun/apt">Source</a></footer>
+</main>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+  if(!navigator.clipboard)return;
+  navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1500);});
+});});
+</script>
+</body>
+</html>

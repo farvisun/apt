@@ -1,0 +1,53 @@
+name: Publish repository
+
+# Rebuilds the signed APT repository from the latest Lumen and Desktop Studio
+# releases. Runs after a push, on demand, and every six hours to pick up new
+# releases. Run it right away with: gh workflow run publish.yml -R farvisun/apt
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install repository tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apt-utils gnupg
+      - name: Import signing key
+        env:
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
+        run: |
+          printf '%s\n' "$APT_SIGNING_KEY" | gpg --batch --import
+          echo "SIGNING_FINGERPRINT=$(cat docs/fingerprint)" >> "$GITHUB_ENV"
+      - name: Build signed repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/build-repo.sh
+      - name: Check the signatures
+        run: |
+          gpg --batch --verify site/dists/stable/InRelease
+          gpg --batch --verify site/dists/stable/Release.gpg site/dists/stable/Release
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
